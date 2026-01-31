@@ -157,12 +157,12 @@ WS /ws/payments                    - Real-time payment updates
 ```bash
 curl -X POST http://localhost:8080/api/v1/razorpay/orders \
   -H "Content-Type: application/json" \
-  -H "X-API-Key: pk_test_your_key" \
+  -H "X-API-Key: your_api_key" \
   -d '{
     "amount": 50000,
     "currency": "INR",
     "description": "Test payment",
-    "customer_email": "customer@example.com"
+    "customer_email": "user@domain.com"
   }'
 ```
 
@@ -171,7 +171,7 @@ curl -X POST http://localhost:8080/api/v1/razorpay/orders \
 ```bash
 curl -X POST http://localhost:8080/api/v1/crypto/payment \
   -H "Content-Type: application/json" \
-  -H "X-API-Key: pk_test_your_key" \
+  -H "X-API-Key: your_api_key" \
   -d '{
     "amount": 1000000000000000000,
     "currency": "ETH",
@@ -185,7 +185,7 @@ curl -X POST http://localhost:8080/api/v1/crypto/payment \
 ```bash
 curl -X POST http://localhost:8080/api/v1/crypto/verify-signature \
   -H "Content-Type: application/json" \
-  -H "X-API-Key: pk_test_your_key" \
+  -H "X-API-Key: your_api_key" \
   -d '{
     "address": "0x742d35Cc6634C0532925a3b844Bc9e7595f1E8e4",
     "message": "Sign this message",
@@ -240,7 +240,7 @@ docker-compose --profile production up -d
 
 ### Kubernetes
 
-See `k8s/` directory for Kubernetes manifests (if available).
+Kubernetes manifests can be added to a `k8s/` directory for container orchestration.
 
 ### Recommended Architecture
 
@@ -269,7 +269,7 @@ See `k8s/` directory for Kubernetes manifests (if available).
 - Health endpoint: `/health`
 - Status endpoint: `/api/v1/status`
 - Structured JSON logging for log aggregation
-- Prometheus metrics (coming soon)
+- Prometheus metrics endpoint can be added via `metrics-exporter-prometheus` crate
 
 ## Development
 

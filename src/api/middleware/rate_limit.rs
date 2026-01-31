@@ -94,13 +94,25 @@ pub mod per_ip {
             limiter.check().is_ok()
         }
 
-        /// Clean up old entries (call periodically)
+        /// Clean up entries when map grows too large
+        /// Call this periodically via a background task
         pub fn cleanup(&self) {
-            // Remove entries that haven't been used recently
-            // In production, you'd track last access time
+            // Clear all entries when threshold exceeded to prevent unbounded memory growth
+            // Rate limiters will be recreated on next request from each IP
             if self.limiters.len() > 10000 {
-                self.limiters.retain(|_, _| true); // Placeholder
+                self.limiters.clear();
+                tracing::info!("Rate limiter cache cleared due to size threshold");
             }
+        }
+
+        /// Get current number of tracked IPs
+        pub fn len(&self) -> usize {
+            self.limiters.len()
+        }
+
+        /// Check if limiter map is empty
+        pub fn is_empty(&self) -> bool {
+            self.limiters.is_empty()
         }
     }
 }
