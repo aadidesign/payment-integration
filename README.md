@@ -2,6 +2,10 @@
 
 A production-ready, high-performance payment gateway backend built in Rust. Supports traditional payments via Razorpay and cryptocurrency payments via direct blockchain integration.
 
+<img width="1308" height="713" alt="image" src="https://github.com/user-attachments/assets/e9d4a88b-0b34-4f34-b8fa-315aec4e4e18" />
+
+
+
 ## Features
 
 ### Payment Methods
